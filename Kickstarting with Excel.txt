@@ -1,0 +1,75 @@
+# **Kickstarting with Excel**
+
+## Overview of Project
+Using data from Kickstarter to find more effective ways to meet goals
+
+### Purpose
+Louise used kickstarter to raise funds for her play *Fever* and came just short of her fundraising goal. 
+Using data from kickstarter we will be analyzing two different ways Louise could have used kickstarter to more effectively reach her goal.
+
+## Analysis and Challenges
+
+### Outcomes Based on Launch Date
+We began our analysis by wondering if the time of year the Kickstarter campaign began, had any effect on whether the campaign was able to reach its goal or not. 
+Using a PivotTable, we were able to narrow down the data that would help us in this. The images below display the PivotTable we created and the Fields used to create it.
+We filtered by "Parent Category", because we are only concerned with kickstarters raising money for plays, and by "Years", in order to be able to see specific data for any year.
+For our columns we used "Outcomes", to show us how many Kickstarters were successful, how many failed, and how many were cancelled. 
+For our rows we used a new column we created called "Date Created Conversion", which will be discussed more under Challenges, to show us which month of the year the Kickstarter was created.
+
+![alt text](https://github.com/Michael-Rediker/Kickstarter-Analysis/blob/master/Launch%20Dates%20PivotTable.png)
+![alt text](https://github.com/Michael-Rediker/Kickstarter-Analysis/blob/master/Launch%20Dates%20PivotTable%20Fields.PNG)
+
+### Outcomes Based on Goals
+Next, we looked at how different Goal amounts effected a Kickstarters Success.
+Breaking the Goals down into different levels at increments of $5,000 allows us to see how effective Goals were at different ranges from Less than $1,000 to Greater than $50,000.
+Our data has a column for the Goals of each Kickstarter, however we needed to create a new table (pictured below) to sort the Goals into the levels we created and to show the outcomes, how many of the kickstarters were successful, failed, or cancelled.
+Seeing the number of Kickstarters that succeeded at each level is good, but doesn't give us much to work with. By creating columns to show the outcomes as a percentage of the whole, gives us a better understanding of how succesful campaigns fared in relation to the total number of kickstarters at each level.
+
+![alt text](https://github.com/Michael-Rediker/Kickstarter-Analysis/blob/master/Goals%20Table.png)
+
+###Challenges
+In our analysis based on launch date, we needed to know which months of the year had the most succesful kickstarters. However in our data, the column "launched_at" was not in a familiar date format.
+The numbers listed in this column were Unix Timestamps, which measures time as a number in seconds from midnight of 1/1/1970. In order to convert these numbers into a usable format we had to convert the number into days by dividing by seconds, minutes, then hours in a day. Then added that to the date 1/1/1970.
+The conversion itself wasn't too difficult once I came to understand what the Unix Timestamp meant. Without that understanding, it would have been impossible to use the "launched_at" data, which we needed for our analysis.
+The biggest challenge in our analysis on Outcomes based on goals, was sorting each kickstarter campaign into its respective Goal level and whether that kickstarter was successful, failed or cancelled. 
+To do this required using the =countifs function to first decide if a campaign was in the needed Goal level, then if it was successful, then if the kickstarter was a part of the subcategory "Plays".
+Building the formula out wasn't too difficult, however I ran into trouble when trying to take that formula to also count how many failed and were cancelled; none of the numbers looked correct.
+I realized I hadn't "locked" the columns in the formula, so when I went to move the formula to the next row or column, it was moving wich rows and columns were referenced as well. 
+Once I locked those columns, the data became much more clear and I was able to create the line chart we used in the analysis.
+
+##Results
+
+-Outcomes Based on Launch Date
+*In order to visualize our results better, a line graph was created to plot the outcomes of the kickstarter against each month of the year. The graph shows that the highest number of Kickstarters that were successful were created in the months of May, June, and July. So if Louise wanted to have a higher chance of reaching her campaign goals, it would be smart to start the campaign in one of those three months. 
+*The graph also shows that there is not a significant amount of change in the number of kickstarters that were cancelled depending on the month of the year. This lets us know that there likely isn't a connection to the time of year being a reason for why a kickstarter was cancelled or not.
+
+![alt text](https://github.com/Michael-Rediker/Kickstarter-Analysis/blob/master/Theater_Outcomes_vs_Launch.png)
+
+-Outcomes Based on Goals
+*To see which kickstarters were more succesful depending on the Goal ammount, a line graph was created from the table we made of the percentage of successful, failed, or cancelled in each Goal level. The overall trend shows that more successful kickstarters have smaller Goal ammounts. Kickstarters with goals under $5,000 were more likely to be succesful.
+
+![alt text](https://github.com/Michael-Rediker/Kickstarter-Analysis/blob/master/Outcomes_vs_Goals.png)
+
+-Limitations
+There are some limitations with our data set. While there is a lot of data on plays, we don't have any data on which types of plays are more or less successful. Do dramas succeed more often than comedies? Are plays written by women, or men, more likely to succeed in meeting their goals? By having more detailed data, we could give even more specific recommendations to Louise on how to successfully meet her goals.
+There are also two columns of data that could be useful, but don't make sense as they're currently presented. "Staff picks" and "Spotlight" contain data that is either *True* or *False*. We can guess that it means the kickstarter was a staffpick or featured in a spotlight, but without confirmation or converting that data into more useful numerical data we can plot, it does not help us much.
+
+-Other Possibilities
+While there are limitations in the data, there is also other useful information we could use like the columns "backers_count" and "average donation". 
+If Louise is wanting to increase the amount of people she has donating to her campaign, we could compare the backers count to goal ammount, letting us know if there is a connection between the stated goal of the campaign and how many people donate.
+Maybe Louise is interested in seeing how much of an average donation it would take for her campaing to succeed. We could compare the average donation made to the different outcomes to see what average donations are more likely to result in a successful campaign.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
